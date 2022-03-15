@@ -2,6 +2,8 @@
 #' @param x Azure subscription.
 #' @param ... Addition parameters for
 #'   \code{\link[AzureRMR]{az_subscription}$list_resource_groups} S6 method.
+#'   Azure supports `filter` by tag name and value; also `top` for limiting the
+#'   number of resource groups.
 #' @return List of resource groups.
 #' @export
 list_resource_groups <- function(x, ...) {
