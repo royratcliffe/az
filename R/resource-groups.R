@@ -1,5 +1,5 @@
 #' List Resource Groups
-#' @param x Azure subscription.
+#' @param x Azure subscription, or \code{NULL} for all available subscriptions.
 #' @param ... Addition parameters for
 #'   \code{\link[AzureRMR]{az_subscription}$list_resource_groups} S6 method.
 #'   Azure supports `filter` by tag name and value; also `top` for limiting the
