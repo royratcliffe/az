@@ -20,6 +20,9 @@ list_resource_groups.az_subscription <- function(x, ...) {
 #' each one then concatenates the lists. The result becomes a combined list of
 #' resource groups. The subscription identifier remains accessible from each.
 #'
+#' The filters, if any, apply to resource groups and _not_ to subscriptions.
+#' Hence the filters collect resource groups from all subscriptions unfiltered.
+#'
 #' @inheritParams list_resource_groups
 #' @return Named list of resource groups, R6 environments. The name of the group
 #'   concatenates the subscription identifier with the resource group name with
@@ -29,8 +32,8 @@ list_resource_groups.az_subscription <- function(x, ...) {
 #' \dontrun{
 #' purrr::keep(list_resource_groups(), ~ .x$name == "rg")
 #' }
-list_resource_groups.default <- function(x, ...) {
-  do.call(c, lapply(list_subscriptions(), list_resource_groups(...)))
+list_resource_groups.NULL <- function(x, ...) {
+  do.call(c, lapply(list_subscriptions(), list_resource_groups, ...))
 }
 
 #' Get Resource Group by Name
