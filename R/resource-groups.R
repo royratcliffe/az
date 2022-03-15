@@ -47,6 +47,11 @@ get_resource_group <- function(x, name) {
 }
 
 #' @export
-get_resource_group.az_subscription <- function(x, name) {
-  x$get_resource_group(name)
+get_resource_group.az_subscription <- function(x, ...) {
+  x$get_resource_group(...)
+}
+
+#' @export
+get_resource_group.NULL <- function(x, name) {
+  purrr::keep(list_resource_groups(), ~ .x$name == name)
 }
