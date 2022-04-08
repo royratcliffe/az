@@ -11,12 +11,6 @@ list_subscriptions <- function(x, ...) {
 
 #' @inheritParams list_subscriptions
 #' @export
-list_subscriptions.az_rm <- function(x, ...) {
-  x$list_subscriptions(...)
-}
-
-#' @inheritParams list_subscriptions
-#' @export
-list_subscriptions.default <- function(x, ...) {
+list_subscriptions.NULL <- function(x, ...) {
   list_subscriptions(AzureRMR::get_azure_login())
 }

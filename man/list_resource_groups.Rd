@@ -7,10 +7,12 @@
 list_resource_groups(x, ...)
 }
 \arguments{
-\item{x}{Azure subscription.}
+\item{x}{Azure subscription, or \code{NULL} for all available subscriptions.}
 
 \item{...}{Addition parameters for
-\code{\link[AzureRMR]{az_subscription}$list_resource_groups} S6 method.}
+\code{\link[AzureRMR]{az_subscription}$list_resource_groups} S6 method.
+Azure supports \code{filter} by tag name and value; also \code{top} for limiting the
+number of resource groups.}
 }
 \value{
 List of resource groups.
