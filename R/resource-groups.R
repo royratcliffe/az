@@ -10,12 +10,6 @@ list_resource_groups <- function(x, ...) {
   UseMethod("list_resource_groups")
 }
 
-#' @inheritParams list_resource_groups
-#' @export
-list_resource_groups.az_subscription <- function(x, ...) {
-  x$list_resource_groups(...)
-}
-
 #' List of All Resource Groups in All Subscriptions
 #'
 #' Asks for all subscriptions, since none supplied. Lists resource groups for
@@ -36,22 +30,4 @@ list_resource_groups.az_subscription <- function(x, ...) {
 #' }
 list_resource_groups.NULL <- function(x, ...) {
   do.call(c, lapply(list_subscriptions(), list_resource_groups, ...))
-}
-
-#' Get Resource Group by Name
-#' @param x Azure subscription.
-#' @param name Name of resource group.
-#' @export
-get_resource_group <- function(x, name) {
-  UseMethod("get_resource_group")
-}
-
-#' @export
-get_resource_group.az_subscription <- function(x, ...) {
-  x$get_resource_group(...)
-}
-
-#' @export
-get_resource_group.NULL <- function(x, name) {
-  purrr::keep(list_resource_groups(), ~ .x$name == name)
 }
